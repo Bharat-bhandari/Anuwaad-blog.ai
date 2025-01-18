@@ -64,7 +64,7 @@ export const getParentBlog = AsyncHandler(async (req, res) => {
 export const addBlogs = AsyncHandler(async (req, res) => {
   const blogData: CreateBlogPayload = req.body;
 
-  const userId = "d9698344-82fa-415b-9908-43300422a4aa";
+  const userId = "1491ffd2-a439-4b57-8255-8506f07b2ce6";
   const englishEntry = blogData.find((item) => item.lang === "en");
 
   if (!englishEntry) {
