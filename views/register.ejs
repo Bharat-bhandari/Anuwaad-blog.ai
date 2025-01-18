@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f9f7f7; /* Light background color */
+        font-family: Arial, sans-serif;
+      }
+
+      .register-container {
+        width: 350px;
+        margin: 80px auto;
+        background-color: #ffffff; /* White card over the off-white background */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+
+      .register-container h2 {
+        text-align: center;
+        color: #8487f3; /* Accent color */
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        outline: none;
+      }
+
+      .btn-submit {
+        width: 100%;
+        background-color: #8487f3;
+        color: #ffffff;
+        border: none;
+        padding: 10px 0;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-submit:hover {
+        background-color: #767be0;
+      }
+
+      .error-message {
+        color: red;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .extra-links {
+        text-align: center;
+        margin-top: 15px;
+      }
+      .extra-links a {
+        color: #8487f3;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Register</h2>
+
+      <!-- 
+      Action points to the POST route where you handle registration logic.
+      Example: "/auth/register"
+    -->
+      <form action="/api/auth/register" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn-submit">Sign Up</button>
+
+        <!-- Display error from server-side if any issue occurs -->
+        <% if (typeof error !== 'undefined') { %>
+        <p class="error-message"><%= error %></p>
+        <% } %>
+      </form>
+
+      <div class="extra-links">
+        <!-- Example link to a login page -->
+        <p>Already have an account? <a href="/">Login here</a></p>
+      </div>
+    </div>
+  </body>
+</html>

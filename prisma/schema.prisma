@@ -12,3 +12,48 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String   @id @default(uuid())
+  username  String
+  email     String   @unique
+  password  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+   blogs     Blog[]
+}
+
+
+model Blog {
+  id        String            @id @default(uuid())
+  image     String
+  title     String
+  content   String
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  isDraft   Boolean           
+
+  // Foreign key to User
+  userId    String
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // One-to-many relationship to BlogTranslation
+  translations BlogTranslation[]
+}
+
+
+model BlogTranslation {
+  id        String   @id @default(uuid())
+  blogId    String
+  language  String   // e.g. "hi", "mr", "gu", "ta", etc.
+  content   String   // The translated text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relation to Blog
+  blog      Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+}
