@@ -29,21 +29,21 @@ const test = app.set("views", path.join(__dirname, "../views"));
 
 // **********************************************************************************
 
-// app.get("/", (req: Request, res: Response) => {
-//   res.render("login", {
-//     title: "Home",
-//     message: "Welcome to EJS with Test",
-//   });
-// });
+app.get("/", (req: Request, res: Response) => {
+  res.render("login", {
+    title: "Home",
+    message: "Welcome to EJS with Test",
+  });
+});
 
-// app.post("/login", async (req, res) => {});
+app.post("/login", async (req, res) => {});
 
-// // **********************************************************************************
+// **********************************************************************************
 
-// app.get("/register", (req, res) => {
-//   // Pass an error if you want to show anything else
-//   res.render("register");
-// });
+app.get("/register", (req, res) => {
+  // Pass an error if you want to show anything else
+  res.render("register");
+});
 
 // **********************************************************************************
 import authRouter from "./routes/auth.route";
