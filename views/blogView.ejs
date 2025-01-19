@@ -28,24 +28,65 @@
         font-size: 14px;
         margin-bottom: 10px;
       }
+
+      .language-selector {
+        margin-bottom: 20px;
+      }
+
+      .language-selector select {
+        padding: 8px;
+        font-size: 14px;
+      }
     </style>
+    <script>
+      function changeLanguage(selectedLang) {
+        // Get the current path and remove the last segment
+        const currentPath = window.location.pathname.split('/').slice(0, -1).join('/');
+        // Redirect to the new URL with the selected language code
+        const newUrl = `${currentPath}/${selectedLang}`;
+        window.location.href = newUrl;
+      }
+    </script>
   </head>
   <body>
     <div class="blog-container">
-      <h1><%= blog.title %></h1>
-
-      <!-- Language info -->
-      <div class="lang-info">
-        Showing this blog in <%= language === 'en' ? 'English' :
-        language.toUpperCase() %>.
+      <!-- Language Dropdown -->
+      <div class="language-selector">
+        <label for="language-dropdown">Select Language: </label>
+        <select
+          id="language-dropdown"
+          onchange="changeLanguage(this.value)"
+        >
+          <option value="en" <%= language === 'en' ? 'selected' : '' %>>English</option>
+          <option value="hi" <%= language === 'hi' ? 'selected' : '' %>>Hindi</option>
+          <option value="mr" <%= language === 'mr' ? 'selected' : '' %>>Marathi</option>
+          <option value="gu" <%= language === 'gu' ? 'selected' : '' %>>Gujarati</option>
+          <option value="ta" <%= language === 'ta' ? 'selected' : '' %>>Tamil</option>
+          <option value="kn" <%= language === 'kn' ? 'selected' : '' %>>Kannada</option>
+          <option value="te" <%= language === 'te' ? 'selected' : '' %>>Telugu</option>
+          <option value="bn" <%= language === 'bn' ? 'selected' : '' %>>Bengali</option>
+          <option value="ml" <%= language === 'ml' ? 'selected' : '' %>>Malayalam</option>
+          <option value="pa" <%= language === 'pa' ? 'selected' : '' %>>Punjabi</option>
+          <option value="or" <%= language === 'or' ? 'selected' : '' %>>Odia</option>
+        </select>
       </div>
 
-      <!-- If user info is included -->
+      <!-- Blog Title -->
+      <h1><%= blog.title %></h1>
+
+      <!-- Language Info -->
+      <div class="lang-info">
+        Showing this blog in <%= language === 'en' ? 'English' : language.toUpperCase() %>.
+      </div>
+
+      <!-- Blog Author -->
       <% if (blog.user) { %>
       <p><strong>Author:</strong> <%= blog.user.username %></p>
       <% } %>
 
       <hr />
+
+      <!-- Blog Content -->
       <p><%= blog.content %></p>
     </div>
   </body>

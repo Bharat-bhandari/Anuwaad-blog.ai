@@ -50,7 +50,7 @@ export const getParentBlog = AsyncHandler(async (req, res) => {
     if (translation) {
       res.render("blogView", {
         blog: {
-          title: `Translation (${lang}) of ${translation.blog.title}`,
+          title: translation.title,
           content: translation.content,
           user: translation.blog.user,
           imageUrl: translation.blog.image,
