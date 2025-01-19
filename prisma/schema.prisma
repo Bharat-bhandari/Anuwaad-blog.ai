@@ -50,6 +50,7 @@ model BlogTranslation {
   blogId    String
   language  String   // e.g. "hi", "mr", "gu", "ta", etc.
   content   String   // The translated text
+  title     String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
